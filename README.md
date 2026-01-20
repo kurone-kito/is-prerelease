@@ -45,11 +45,12 @@ When you want to create a monorepo project, you should use the
 - Node.js: Any of the following versions
   - Iron LTS (`^20.11.x`)
   - Jod LTS (`^22.x.x`)
-  - Latest (`>=24.x.x`)
+  - Krypton LTS (`^24.x.x`)
+  - Latest (`>=25.x.x`)
 
 Note that this template includes `.node-version`, `.nvmrc`, and
 `.tool-versions` files with specific Node.js versions. These files
-currently list `20.19.5`, so update them and this section as needed when
+currently list `20.19.6`, so update them and this section as needed when
 you start a new project.
 
 ## Development
