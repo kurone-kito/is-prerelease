@@ -5,6 +5,7 @@
   "explorer.fileNesting.patterns": {
     "*.d.mts": "${capture}.mjs, ${capture}.mjs.*, ${capture}.d.mts.*",
     "*.md": "${capture}.*.md",
+    "*.mts": "${capture}.spec.mts",
     ".gitattributes": ".gitignore",
     ".markdownlint.*": ".markdownlint-cli2.*",
     ".tool-versions": ".node-version, .nvmrc",
@@ -20,14 +21,17 @@
     "**/node_modules/**/*": true
   },
   "files.watcherExclude": {
+    "**/*.config.timestamp_*": true,
     "**/*.tgz": true,
     "**/*.tsbuildinfo": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/.husky/_/**": true,
+    "**/coverage/**/*": true,
     "**/dist/**/*": true,
     "**/node_modules/**": true,
-    "**/pnpm-lock.yaml.*": true
+    "**/pnpm-lock.yaml.*": true,
+    "**/v8-compile-cache-*": true
   },
   "git.branchProtection": ["main"],
   "material-icon-theme.files.associations": {
