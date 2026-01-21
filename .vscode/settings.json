@@ -3,6 +3,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
+    "*.d.mts": "${capture}.mjs, ${capture}.mjs.*, ${capture}.d.mts.*",
     "*.md": "${capture}.*.md",
     ".gitattributes": ".gitignore",
     ".markdownlint.*": ".markdownlint-cli2.*",
@@ -11,6 +12,7 @@
     "tsconfig.json": "*.tsbuildinfo"
   },
   "files.associations": {
+    "*.map": "json",
     ".imgbotconfig": "json",
     "LICENSE": "plaintext"
   },
@@ -19,9 +21,11 @@
   },
   "files.watcherExclude": {
     "**/*.tgz": true,
+    "**/*.tsbuildinfo": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/.husky/_/**": true,
+    "**/dist/**/*": true,
     "**/node_modules/**": true,
     "**/pnpm-lock.yaml.*": true
   },

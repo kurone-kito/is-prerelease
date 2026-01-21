@@ -19,9 +19,14 @@
   "license": "MIT",
   "author": "kurone-kito <krone@kit.black> (https://kit.black/)",
   "type": "module",
-  "files": [],
+  "bin": "./dist/index.mjs",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "clean": "rimraf -g \"*.tgz\" \"*.tsbuildinfo\" node_modules/.cache",
+    "build": "tsc",
+    "clean": "rimraf -g \"*.tgz\" \"*.tsbuildinfo\" dist node_modules/.cache",
+    "dev": "tsc --watch",
     "lint": "pnpm run \"/lint:.+:check/\"",
     "lint:biome:check": "biome check",
     "lint:biome:fix": "biome check --write",
@@ -29,9 +34,12 @@
     "lint:fix": "pnpm run \"/lint:.+:fix/\"",
     "lint:markdown:check": "markdownlint-cli2 \"**/*.md\"",
     "lint:markdown:fix": "markdownlint-cli2 --fix \"**/*.md\"",
+    "pnpm:devPreinstall": "pnpm dlx mkdirp dist && pnpm dlx shx head -n 1 src/index.mts > dist/index.mjs",
     "postlint:fix": "pnpm run lint:cspell:check",
+    "prepack": "pnpm run rebuild",
     "prepare": "pnpm dlx which -s husky && husky || true",
-    "test": "pnpm run lint"
+    "rebuild": "pnpm run clean && pnpm run build",
+    "test": "tsc --noEmit"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.12",
