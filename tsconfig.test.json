@@ -1,0 +1,5 @@
+{
+  "compilerOptions": { "rootDir": ".", "skipLibCheck": true },
+  "include": ["src/**/*", "*.config.mts"],
+  "extends": "./tsconfig"
+}

@@ -4,13 +4,15 @@
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     "*.d.mts": "${capture}.mjs, ${capture}.mjs.*, ${capture}.d.mts.*",
+    "*.mjs": "${capture}.mjs.*",
     "*.md": "${capture}.*.md",
     "*.mts": "${capture}.spec.mts",
     ".gitattributes": ".gitignore",
     ".markdownlint.*": ".markdownlint-cli2.*",
     ".tool-versions": ".node-version, .nvmrc",
     "package.json": ".npmrc, pnpm-lock.yaml, pnpm-workspace.yaml",
-    "tsconfig.json": "*.tsbuildinfo"
+    "tsconfig.json": "*.tsbuildinfo, tsconfig.*.json",
+    "vite.config.mts": "vitest.config.mts"
   },
   "files.associations": {
     "*.map": "json",

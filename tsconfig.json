@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "lib": ["DOM", "ES2023"],
-    "outDir": "dist",
-    "rootDir": "src",
-    "skipLibCheck": true
+    "noEmit": true,
+    "rootDir": "src"
   },
   "exclude": ["coverage", "dist", "node_modules"],
   "extends": "@kurone-kito/typescript-config",
