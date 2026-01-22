@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@kurone-kito/web-toybox-node':
+        specifier: ^0.1.0-alpha.11
+        version: 0.1.0-alpha.11
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.3.12
@@ -668,6 +672,14 @@ packages:
 
   '@kurone-kito/vite-lib-config@0.22.0-alpha.4':
     resolution: {integrity: sha512-1FVR+EfcPYbFrYddsHyXc8cfjLaN7XKUUuiMskLEWTw8sKyH2pftGc59n0Q7eo6VTnLpfOkMrL2bHlyqo/4VTA==}
+    engines: {node: ^20.11 || ^22 || >=24}
+
+  '@kurone-kito/web-toybox-node@0.1.0-alpha.11':
+    resolution: {integrity: sha512-YihUvTaHCLwgOFmH9Sa9XzhZKuE0ZlblK0l9RsJ5/tAY32jr5HzmFY1VaN8YLuFEFLrbkUXdOXXmVNaYikG4Ig==}
+    engines: {node: ^20.11 || ^22 || >=24}
+
+  '@kurone-kito/web-toybox@0.1.0-alpha.11':
+    resolution: {integrity: sha512-OV6sgclo8lZ2eGGHiCNHeFDL2XIMQYRzQcYEsdrL3yab2mjin4HuqKxpXWPxUQOc6zn1GIksU/8pcppvTMqosg==}
     engines: {node: ^20.11 || ^22 || >=24}
 
   '@microsoft/api-extractor-model@7.32.2':
@@ -2718,6 +2730,14 @@ snapshots:
       - tsx
       - typescript
       - yaml
+
+  '@kurone-kito/web-toybox-node@0.1.0-alpha.11':
+    dependencies:
+      '@kurone-kito/web-toybox': 0.1.0-alpha.11
+
+  '@kurone-kito/web-toybox@0.1.0-alpha.11':
+    dependencies:
+      type-fest: 5.4.1
 
   '@microsoft/api-extractor-model@7.32.2(@types/node@25.0.10)':
     dependencies:

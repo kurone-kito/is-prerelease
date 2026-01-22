@@ -43,6 +43,9 @@
     "test:ts": "tsc -p tsconfig.test.json",
     "test:vitest": "vitest run --coverage"
   },
+  "dependencies": {
+    "@kurone-kito/web-toybox-node": "^0.1.0-alpha.11"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.3.12",
     "@commitlint/cli": "^20.3.1",
