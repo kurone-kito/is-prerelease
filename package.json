@@ -24,9 +24,12 @@
     "dist"
   ],
   "scripts": {
+    "bin": "node ./dist/index.mjs",
     "build": "vite build",
     "clean": "rimraf -g \"*.tgz\" \"*.tsbuildinfo\" coverage dist node_modules/.cache",
     "dev": "vite build --watch",
+    "is:prerelease": "pnpm run bin $(npm pkg get version) pre",
+    "is:release": "pnpm run bin $(npm pkg get version)",
     "lint": "pnpm run \"/lint:.+:check/\"",
     "lint:biome:check": "biome check",
     "lint:biome:fix": "biome check --write",
