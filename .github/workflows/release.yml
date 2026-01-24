@@ -1,0 +1,14 @@
+name: Publish the packages as the production release version
+run-name: Publish as the production release version by @${{ github.actor }}
+on:
+  release:
+    types:
+      - published
+permissions:
+  contents: write
+  packages: write
+jobs:
+  publish:
+    uses: ./.github/workflows/common-release.yml
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
