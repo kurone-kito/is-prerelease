@@ -1,0 +1,14 @@
+name: Publish the packages as the pre-release version
+run-name: Publish as the pre-release version by @${{ github.actor }}
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  packages: write
+jobs:
+  publish:
+    uses: ./.github/workflows/common-release.yml
+    with:
+      next: true
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

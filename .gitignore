@@ -261,3 +261,7 @@ $RECYCLE.BIN/
 ### Node ###
 # pnpm
 pnpm-lock.yaml.*
+
+# Vite / Vitest
+v8-compile-cache-*
+*.config.timestamp_*

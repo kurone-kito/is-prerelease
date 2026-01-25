@@ -1,93 +1,102 @@
-# 📄 PNPM project template
+# 🆕 `@kurone-kito/is-prerelease`
+
+A simple CLI app based on Node.js that determines whether a given version
+is a pre-release version using [semver](https://www.npmjs.com/package/semver).
 
 ## Features
 
-- PNPM
-- TypeScript
-- Biome
-- Commitlint with Husky
-- Visual Studio Code / Vim ready
-- CI configurations
-  - CodeRabbit
-  - Dependabot
-  - GitHub Actions
+- Detects pre-release versions (e.g., `1.0.0-alpha.1`, `2.0.0-beta.3`)
+- Returns exit codes for easy CI/CD integration
+- Zero configuration required
 
-## How to use this template
+## Requirements
 
-You can create a new project by using `degit` or the “Use this template”
-button on GitHub.
+- Node.js `^20.11 || ^22 || >=24`
+
+## Installation
 
 ```sh
-npx degit kurone-kito/pnpm-project-template my-project
-cd my-project
-pnpm install
+npm i -D @kurone-kito/is-prerelease
 ```
 
-### Additional configurations
+## Usage
 
-- Update `package.json` fields:
-  - `name`: The name of your project.
-  - `description`: A brief description of your project.
-  - `author`: Your name or organization.
-  - `license`: The license for your project (default is MIT).
-  - `homepage`: The homepage URL for your project.
-  - `repository`: The repository URL for your project.
-  - `bugs`: The URL for reporting issues.
-- Edit or remove `.github/CODEOWNERS` as needed.
-
-### Usecase
-
-When you want to create a monorepo project, you should use the
-[pnpm-workspace-template](https://github.com/kurone-kito/pnpm-workspace-template).
-
-## System Requirements
-
-- Node.js: Any of the following versions
-  - Iron LTS (`^20.11.x`)
-  - Jod LTS (`^22.x.x`)
-  - Latest (`>=24.x.x`)
-
-Note that this template includes `.node-version`, `.nvmrc`, and
-`.tool-versions` files with specific Node.js versions. These files
-currently list `20.19.5`, so update them and this section as needed when
-you start a new project.
-
-## Development
-
-### Install the dependencies
+### Command Syntax
 
 ```sh
-corepack enable
-pnpm install
+is-prerelease <version> [pre]
 ```
 
-### Linting
+### Arguments
+
+| Argument  | Required | Description                                                                     |
+| --------- | -------- | ------------------------------------------------------------------------------- |
+| `version` | Yes      | The version string to check (JSON format, e.g., `"1.0.0"` or `"1.0.0-alpha.1"`) |
+| `pre`     | No       | If provided, the command expects a pre-release version                          |
+
+### Exit Codes
+
+| Condition                                              | Exit Code     |
+| ------------------------------------------------------ | ------------- |
+| Pre-release version **and** `pre` argument provided    | `0` (success) |
+| Stable version **and** `pre` argument **not** provided | `0` (success) |
+| Otherwise                                              | `1` (failure) |
+
+### Examples
+
+#### Check if a version is a pre-release
 
 ```sh
-pnpm run lint
-pnpm run lint:fix # Lint and auto-fix
+# Returns exit code 0 if pre-release
+is-prerelease '"1.0.0-alpha.1"' pre
+
+# Returns exit code 0 if stable release
+is-prerelease '"1.0.0"'
 ```
 
-### Testing
+#### Integration with npm scripts
+
+```json
+{
+  "scripts": {
+    "is:prerelease": "is-prerelease $(npm pkg get version) pre",
+    "is:release": "is-prerelease $(npm pkg get version)"
+  }
+}
+```
+
+> **Note:** `npm pkg get version` outputs a JSON-formatted string
+> (e.g., `"1.0.0"`), which is the expected input format.
+
+#### CI/CD Usage Example
 
 ```sh
-pnpm run test
+# Publish to npm only if it's a pre-release version
+if npm run is:prerelease; then
+  npm publish --tag next
+fi
+
+# Publish to npm only if it's a stable release
+if npm run is:release; then
+  npm publish --tag latest
+fi
 ```
 
-Currently, the command works as an alias for the `pnpm run lint` command.
-Set up your own testing framework and replace this script as needed.
+## How It Works
 
-### Cleaning
+This CLI uses the `prerelease()` function from the
+[semver](https://www.npmjs.com/package/semver) package to detect
+pre-release identifiers in version strings.
 
-```sh
-pnpm run clean
-```
+- `1.0.0` → Stable release (no pre-release identifier)
+- `1.0.0-alpha.1` → Pre-release (identifier: `['alpha', 1]`)
+- `2.0.0-beta.3` → Pre-release (identifier: `['beta', 3]`)
 
 ## Contributing
 
 Welcome to contribute to this repository! For more details,
 please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
-## LICENSE
+## License
 
 [MIT](./LICENSE)
