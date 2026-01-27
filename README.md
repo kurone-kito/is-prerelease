@@ -17,7 +17,7 @@ is a pre-release version using [semver](https://www.npmjs.com/package/semver).
 
 ## Requirements
 
-- Node.js `^20.11 || ^22 || >=24`
+- Node.js `^20.18 || ^22 || >=24`
 
 ## Installation
 
