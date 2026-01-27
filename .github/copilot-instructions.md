@@ -1,6 +1,8 @@
 # Guidelines for AI Agents
 
-This project is a generic Node.js project template using pnpm.
+This project is a CLI tool to determine if a given version string
+represents a pre-release version based on semantic versioning (semver)
+standards.
 
 - Please write comments in English.
 - Use the `pnpm run lint:fix` command to ensure code style quality.
@@ -18,6 +20,12 @@ corepack enable
 pnpm install
 ```
 
+## Building
+
+```sh
+pnpm run build
+```
+
 ### Linting
 
 ```sh
@@ -30,9 +38,6 @@ pnpm run lint:fix # Lint and auto-fix
 ```sh
 pnpm run test
 ```
-
-Currently, the command works as an alias for the `pnpm run lint` command.
-Set up your own testing framework and replace this script as needed.
 
 ### Cleaning
 
