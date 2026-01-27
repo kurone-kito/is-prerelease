@@ -1,6 +1,6 @@
 {
   "name": "@kurone-kito/is-prerelease",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The simple CLI app based on Node.js that determines whether the project is a pre-release version",
   "keywords": [
     "check",
