@@ -31,56 +31,59 @@ describe('is-prerelease CLI', () => {
       ['"1.0.0-alpha"', 'pre'],
       ['"1.0.0-beta.1"', 'pre'],
       ['"2.0.0-rc.1"', 'pre'],
-    ])('should exit with 0 when version=%s and pre=%s', async (version, pre) => {
-      await runCli(version, pre);
-      expect(process.exitCode).toBe(0);
-    });
+    ])(
+      'should exit with 0 when version=%s and pre=%s',
+      async (version, pre) => {
+        await runCli(version, pre);
+        expect(process.exitCode).toBe(0);
+      },
+    );
 
-    it.each([
-      ['"1.0.0-alpha"'],
-      ['"1.0.0-beta.1"'],
-      ['"2.0.0-rc.1"'],
-    ])('should exit with 1 when version=%s and pre is empty', async (version) => {
-      await runCli(version, '');
-      expect(process.exitCode).toBe(1);
-    });
+    it.each([['"1.0.0-alpha"'], ['"1.0.0-beta.1"'], ['"2.0.0-rc.1"']])(
+      'should exit with 1 when version=%s and pre is empty',
+      async (version) => {
+        await runCli(version, '');
+        expect(process.exitCode).toBe(1);
+      },
+    );
 
-    it.each([
-      ['"1.0.0-alpha"'],
-      ['"1.0.0-beta.1"'],
-    ])('should exit with 1 when version=%s and pre is not provided', async (version) => {
-      await runCli(version);
-      expect(process.exitCode).toBe(1);
-    });
+    it.each([['"1.0.0-alpha"'], ['"1.0.0-beta.1"']])(
+      'should exit with 1 when version=%s and pre is not provided',
+      async (version) => {
+        await runCli(version);
+        expect(process.exitCode).toBe(1);
+      },
+    );
   });
 
   describe('stable versions', () => {
-    it.each([
-      ['"1.0.0"'],
-      ['"2.3.4"'],
-      ['"0.1.0"'],
-    ])('should exit with 0 when version=%s and pre is not provided', async (version) => {
-      await runCli(version);
-      expect(process.exitCode).toBe(0);
-    });
+    it.each([['"1.0.0"'], ['"2.3.4"'], ['"0.1.0"']])(
+      'should exit with 0 when version=%s and pre is not provided',
+      async (version) => {
+        await runCli(version);
+        expect(process.exitCode).toBe(0);
+      },
+    );
 
-    it.each([
-      ['"1.0.0"'],
-      ['"2.3.4"'],
-      ['"0.1.0"'],
-    ])('should exit with 0 when version=%s and pre is empty string', async (version) => {
-      await runCli(version, '');
-      expect(process.exitCode).toBe(0);
-    });
+    it.each([['"1.0.0"'], ['"2.3.4"'], ['"0.1.0"']])(
+      'should exit with 0 when version=%s and pre is empty string',
+      async (version) => {
+        await runCli(version, '');
+        expect(process.exitCode).toBe(0);
+      },
+    );
 
     it.each([
       ['"1.0.0"', 'pre'],
       ['"2.3.4"', 'pre'],
       ['"0.1.0"', 'stable'],
-    ])('should exit with 1 when version=%s and pre=%s', async (version, pre) => {
-      await runCli(version, pre);
-      expect(process.exitCode).toBe(1);
-    });
+    ])(
+      'should exit with 1 when version=%s and pre=%s',
+      async (version, pre) => {
+        await runCli(version, pre);
+        expect(process.exitCode).toBe(1);
+      },
+    );
   });
 
   describe('edge cases', () => {
