@@ -1,3 +1,5 @@
 import { viteConfig } from '@kurone-kito/vite-lib-config';
 
-export default viteConfig();
+const config: ReturnType<typeof viteConfig> = viteConfig();
+
+export default config;
