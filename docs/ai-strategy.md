@@ -43,9 +43,8 @@ directly versus needing an adapter.
 - Treat this file as a human-facing strategy note, not as the primary
   instruction file for any agent.
 - When updating AI guidance, review `AGENTS.md` first, then `CLAUDE.md`,
-  `GEMINI.md`, `.github/copilot-instructions.md`, `README.md`, and the
-  `.github/CONTRIBUTING*.md` family (which link directly into
-  `AGENTS.md`'s section anchors) for anything that references it.
+  `GEMINI.md`, `.github/copilot-instructions.md`, and `README.md` for
+  anything that references it.
 
 ## Provenance
 

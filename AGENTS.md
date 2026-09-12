@@ -82,7 +82,6 @@ through a pull request.
 - Changing the project architecture or directory structure
 - Modifying CI/CD workflows (`.github/workflows/`)
 - Altering shared configuration packages (`@kurone-kito/*-config`)
-- Making changes that affect all workspace packages
 
 ### Never do
 
@@ -206,16 +205,17 @@ Refs #42
 #### Good — breaking change
 
 ```txt
-feat!: require node 22 as minimum version
+feat!: require node 20 as minimum version
 
-Node 20 no longer receives the pnpm 12 features this project
-now depends on. Check this repository's own package.json
-engines field for its actual current floor, since it moves on
-independently.
+Node 18 reached end-of-life in April 2025 and no longer
+receives security updates. This example assumes a project
+standardizing on the Node 20 LTS baseline at the time -- check
+this repository's own package.json engines field for its
+actual current floor, since it moves on independently.
 
-BREAKING CHANGE: drop support for node versions below 22.23.2.
-Users must upgrade to node 22.23.2 or later.
-Closes #11
+BREAKING CHANGE: drop support for node 16 and 18. Users
+must upgrade to node 20 or later.
+Closes #108
 ```
 
 #### Bad — vague, developer-centric
