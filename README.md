@@ -11,7 +11,7 @@ is a pre-release version using [semver](https://www.npmjs.com/package/semver).
 
 ## Requirements
 
-- Node.js `^20.11 || ^22 || >=24`
+- Node.js `^22.23.2 || ^24.2.0 || >=26.0.0`
 
 ## Installation
 

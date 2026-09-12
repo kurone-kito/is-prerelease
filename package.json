@@ -40,7 +40,7 @@
     "pnpm:devPreinstall": "pnpm dlx mkdirp dist && pnpm dlx shx head -n 1 src/index.mts > dist/index.mjs",
     "postlint:fix": "pnpm run lint:cspell:check",
     "prepack": "pnpm run rebuild",
-    "prepare": "pnpm dlx which -s husky && husky || true",
+    "prepare": "husky",
     "rebuild": "pnpm run clean && pnpm run build",
     "test": "pnpm run \"/test:.+/\"",
     "test:ts": "tsc -p tsconfig.test.json",
@@ -73,9 +73,10 @@
     "vite": "^7.3.1",
     "vitest": "^4.0.18"
   },
-  "packageManager": "pnpm@10.28.1+sha512.7d7dbbca9e99447b7c3bf7a73286afaaf6be99251eb9498baefa7d406892f67b879adb3a1d7e687fc4ccc1a388c7175fbaae567a26ab44d1067b54fcb0d6a316",
+  "packageManager": "pnpm@12.4.0+sha512.37536c26ed40ab4134b6511e09f6b27f3ebb45687468f2406ca3805279a4e5ca158c1931350ad9774d6ab2108d71b3dbaeb39943159294375e4d053e8e05685c",
   "engines": {
-    "node": "^20.11 || ^22 || >=24"
+    "node": "^22.23.2 || ^24.2.0 || >=26.0.0",
+    "pnpm": "^12.4.0"
   },
   "publishConfig": {
     "access": "public"
