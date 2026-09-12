@@ -298,6 +298,19 @@ pnpm run clean
   every branch push; `.github/workflows/push-main.yml` runs
   `release-drafter` on `main`
 
+## Release model
+
+- `pnpm run is:prerelease` / `pnpm run is:release` run this package's own
+  CLI against its current `package.json` version, gating which npm
+  dist-tag a release should publish under (see the README's "CI/CD Usage
+  Example")
+- `.github/workflows/release.yml` triggers on a published GitHub Release
+  and calls the shared `common-release.yml` workflow to publish to the
+  `latest` npm tag
+- `.github/workflows/release-next.yml` is manually dispatched
+  (`workflow_dispatch`) and calls `common-release.yml` with `next: true`
+  to publish a pre-release build to the `next` npm tag
+
 ## Guardrails
 
 - **Do not** modify community documents (CODE_OF_CONDUCT, CONTRIBUTING)
