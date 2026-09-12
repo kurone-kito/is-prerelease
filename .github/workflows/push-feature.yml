@@ -4,6 +4,8 @@ concurrency:
 name: The CI workflow on push as a feature branch
 on:
   push:
+    branches:
+      - '**'
 permissions:
   contents: read
 run-name: Pushed by @${{ github.actor }}
