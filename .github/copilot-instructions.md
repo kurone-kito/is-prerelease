@@ -1,41 +1,18 @@
-# Guidelines for AI Agents
+# Guidelines for AI Agents (GitHub Copilot)
 
-This project is a generic Node.js project template using pnpm.
+This file is the GitHub Copilot entry point. VS Code Copilot Chat,
+the standalone Copilot CLI, and the Copilot coding agent all discover it
+automatically — and also already discover [AGENTS.md](../AGENTS.md)
+directly, which is the canonical, tool-neutral guide for this repository.
+Read that file first if you haven't already.
 
-- Please write comments in English.
-- Use the `pnpm run lint:fix` command to ensure code style quality.
-- If you have further considerations, uncertainties, or better suggestions,
-  please point them out, even if they seem minor. When doing so, provide at
-  least one recommended solution. If in Plan mode, please resolve all these
-  points before starting implementation.
+## Copilot-specific notes
 
-## Development
+- Map the shared "continue autonomously for low-risk work, but pause and
+  ask when a step is risky or uncertain" guidance onto this project's
+  actual UI: switch to Plan mode and ask the user when that pause condition
+  applies while working in Agent mode, providing one or more recommended
+  response options as AGENTS.md's Conversation section asks.
 
-### Install the dependencies
-
-```sh
-corepack enable
-pnpm install
-```
-
-### Linting
-
-```sh
-pnpm run lint
-pnpm run lint:fix # Lint and auto-fix
-```
-
-### Testing
-
-```sh
-pnpm run test
-```
-
-Currently, the command works as an alias for the `pnpm run lint` command.
-Set up your own testing framework and replace this script as needed.
-
-### Cleaning
-
-```sh
-pnpm run clean
-```
+See [docs/ai-strategy.md](../docs/ai-strategy.md) for why this repository's
+AI instructions are laid out this way.
