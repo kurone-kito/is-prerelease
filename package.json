@@ -57,6 +57,7 @@
     "@kurone-kito/biome-config": "^0.23.0",
     "@kurone-kito/commitlint-config": "^0.23.0",
     "@kurone-kito/cspell-config": "^0.23.0",
+    "@kurone-kito/idd-skill": "github:kurone-kito/idd-skill#adad8ae43c5a1b6fc3a100ce384c8a84a8d5139d",
     "@kurone-kito/lint-staged-config": "^0.23.0",
     "@kurone-kito/markdownlint-config": "^0.23.0",
     "@kurone-kito/typescript-config": "^0.22.0",
