@@ -16,3 +16,19 @@ Read that file first if you haven't already.
 
 See [docs/ai-strategy.md](../docs/ai-strategy.md) for why this repository's
 AI instructions are laid out this way.
+
+## IDD Workflow
+
+This project uses Issue-Driven Development (IDD) with parallel AI
+agents. Start with [docs/idd-workflow.md](../docs/idd-workflow.md) for
+the cross-agent entry path and phase routing.
+
+Before starting IDD work, open
+`.github/instructions/idd-overview-core.instructions.md`. Open the
+routed phase file manually when the current step changes. Note that
+`idd-overview-core.instructions.md` sets `excludeAgent: "code-review"`,
+so it targets an implementing agent rather than Copilot's review
+surface.
+
+See [docs/idd-policy.md](../docs/idd-policy.md) for this repository's
+recorded IDD policy decisions.

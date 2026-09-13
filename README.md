@@ -97,6 +97,11 @@ pre-release identifiers in version strings.
 Welcome to contribute to this repository! For more details,
 please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
+This repository uses Issue-Driven Development (IDD) for AI-agent
+contributions; see [docs/idd-policy.md](docs/idd-policy.md) for the
+recorded policy decisions and [docs/idd-workflow.md](docs/idd-workflow.md)
+for the workflow itself.
+
 ## License
 
 [MIT](./LICENSE)
