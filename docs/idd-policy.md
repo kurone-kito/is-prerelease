@@ -155,11 +155,13 @@ The distributed bundle shrank from five files to four upstream
 (`agents/openai.yaml` was removed in `v0.6.0`, with no replacement).
 
 **Native destination**: `.claude/skills/issue-authoring/` (this
-repository's Claude Code runtime). Installation is #17's scope, not
-landed by this issue — this record confirms the target decision, not
-current presence. Check that `.claude/skills/issue-authoring/SKILL.md`
-actually exists in the working tree before routing to this companion.
+repository's Claude Code runtime). **Installed by #17**, byte-identical
+to `kurone-kito/idd-skill@adad8ae4` (iddVersion 0.11.0): `SKILL.md`,
+`references/contract.md`, `references/draft-patterns.md`,
+`references/workflow-boundary.md`.
 
+- **`issueAuthoring.authoringLabelName`**: `status:authoring`
+  (distributed default)
 - **`issueAuthoring.maxClarificationRounds`**: `3` (distributed default)
 - **`issueAuthoring.heartbeatCoalesceWindow`**: `PT2M` (distributed
   default; v0.10 addition)
@@ -168,12 +170,26 @@ actually exists in the working tree before routing to this companion.
 
 ### Optional `idd-spec-audit` Companion
 
-**Status**: `adopted` as a confirmed decision, targeting
+**Status**: `adopted` and **installed by #17**, at
 `.claude/skills/idd-spec-audit/` (v0.10 addition: a read-only companion
 that audits the installed IDD instruction corpus and agent-entry
-files). Installation is #17's scope, not landed by this issue. Check
-that `.claude/skills/idd-spec-audit/SKILL.md` actually exists in the
-working tree before routing to this companion.
+files), byte-identical to `kurone-kito/idd-skill@adad8ae4`: `SKILL.md`,
+`references/report-template.md`.
+
+Read-only by design: it runs `N` (default 3) independent, parallel,
+read-only LLM passes over the audit scope (`.github/instructions/**`,
+the installed `issue-authoring` bundle, and every agent entry file
+present — `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`,
+`.github/copilot-instructions.md`) and never edits a file or mutates a
+GitHub issue; findings route back through the issue-authoring flow (or
+manual filing, if that companion is absent) instead. Findings are
+aggregated by union across passes — **never quorum-filtered**: a
+finding raised by only one of the `N` passes is reported exactly like
+one raised by all `N`, annotated `Appeared in: K/N` as informational
+context only, since sampling variance is not evidence of invalidity.
+The final roadmap-completion audit (#18) should run this companion and
+document its findings (or its clean result) as part of that
+verification.
 
 ### Bootstrap Execution Mode
 
