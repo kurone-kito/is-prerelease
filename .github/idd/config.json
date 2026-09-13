@@ -24,7 +24,8 @@
     "post-fix-validate": "pnpm run lint:fix && pnpm run lint && pnpm run build && pnpm run test"
   },
   "helperRuntime": {
-    "profile": "package-manager"
+    "profile": "package-manager",
+    "packageSpec": "github:kurone-kito/idd-skill#adad8ae43c5a1b6fc3a100ce384c8a84a8d5139d"
   },
   "issueScope": "roadmap-first",
   "orphanFirstPolicy": "none",
@@ -56,5 +57,8 @@
   },
   "autopilotSuitability": {
     "floor": 3
+  },
+  "worktreeGuard": {
+    "enabled": true
   }
 }

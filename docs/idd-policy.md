@@ -94,15 +94,16 @@ state rather than a pending action.
   2026-07-28) that this repository had "no ruleset" — the two Rulesets
   were added 2026-08-12, after that claim was written, and neither
   defines a required status check.
-- **`idd-advisory-convergence` required check**: **adopted** as a
-  decision, since upstream now ships it as a ready-to-copy file rather
-  than something to hand-write. Copying the workflow file in is #16's
-  scope: it does not exist in this repository until #16 merges, and no
-  IDD phase or agent should assume it gates anything before then.
-  Registering it as an actually-*required* status check inside the
-  `main` Ruleset remains a separate, deferred, maintainer-only
-  GitHub-settings action either way (see roadmap #10's "Deferred and
-  human-dependent work").
+- **`idd-advisory-convergence` required check**: **adopted**.
+  `.github/workflows/idd-advisory-convergence.yml` and its companion
+  `idd-advisory-convergence-comment.yml` are hosted, copied unmodified
+  from `kurone-kito/idd-skill` main at
+  `adad8ae43c5a1b6fc3a100ce384c8a84a8d5139d` (#16). Hosting the workflow
+  files does not by itself make the check required: registering
+  `idd-advisory-convergence` as an actually-*required* status check
+  inside the `main` Ruleset remains a separate, deferred, maintainer-only
+  GitHub-settings action (see roadmap #10's "Deferred and human-dependent
+  work").
 
 ### Credential Scope
 
@@ -119,6 +120,18 @@ upstream's onboarding hearing changed its distributed default to
 `instructions-only`. This repository is already a pnpm-based Node.js
 project, so resolving IDD helpers through the existing `pnpm exec`
 remains the better fit.
+
+**`helperRuntime.packageSpec`**:
+`github:kurone-kito/idd-skill#adad8ae43c5a1b6fc3a100ce384c8a84a8d5139d`
+(#16). `@kurone-kito/idd-skill` is a `devDependency` pinned to this
+exact commit (iddVersion 0.11.0) rather than a mutable branch or the
+`v0.11.0` tag, so future helper invocations cannot silently drift.
+Resolving it as a git-hosted pnpm dependency required one `allowBuilds`
+entry in `pnpm-workspace.yaml`, keyed on the exact resolved codeload
+tarball URL pnpm's own install error names (not the `github:` spec
+shorthand), for its `prepare: husky` lifecycle script — all of its
+declared `bin` entries are plain, already-committed files, so no
+actual build output is needed for them to work.
 
 ### Issue-Author Approval Gate
 
@@ -209,22 +222,42 @@ conversational language used during a hearing.
 
 ### Optional Worktree Guard
 
-**Status**: `enabled` as a confirmed decision, with
-`worktreeGuard.refuseBaseBranchCommits` left **absent/false** so normal
-maintainer base-branch operations and the fully autonomous merge path
-are not blocked. `worktreeGuard.enabled` is absent from
-`.github/idd/config.json` and `.githooks/pre-commit`/`.githooks/pre-push`
-are not yet mode `100755` in the git index — wiring the config field
-and the executable bits is #16's scope, not landed by this issue; do
-not treat this record as evidence the guard is currently active.
-Per-clone activation (`git config core.hooksPath .githooks`) is
-separately deferred, maintainer/agent-session work (roadmap #10).
+**Status**: `enabled`. `worktreeGuard.enabled` is `true` in
+`.github/idd/config.json`, and `.githooks/pre-commit`/`.githooks/pre-push`
+are mode `100755` in the git index. `worktreeGuard.refuseBaseBranchCommits`
+is left **absent/false** so normal maintainer base-branch operations and
+the fully autonomous merge path are not blocked.
+
+This repository already runs Husky (`prepare: husky`, `.husky/`), which
+owns `core.hooksPath` (repointed at `.husky/_` on every install) — so
+activation here is **chaining**, not the base
+`git config core.hooksPath .githooks` step: `.husky/pre-commit` and
+`.husky/pre-push` each end with (or contain only, for `pre-push`, which
+Husky did not ship until this change added it)
+`exec "$(git rev-parse --show-toplevel)/.githooks/<hook>" "$@"`, per
+`docs/onboarding/optional-host-setup.md`'s "Coexisting with an existing
+hook manager" recipe. Concretely, this means per-clone activation is
+`pnpm install` (which runs `prepare: husky`, which repoints
+`core.hooksPath` at `.husky/_`), not a manual
+`git config core.hooksPath .githooks` — running that command directly
+in a clone with Husky present would bypass Husky instead of chaining it.
+Verified with a smoke test in a disposable clone: committing on an
+`issue/*` branch from that clone's own primary worktree was refused by
+name, both by invoking `.githooks/pre-commit` directly and through the
+full Husky chain.
+
+Note: `.githooks/_idd-worktree-guard.sh`'s unquoted glob-expansion bug
+(a recorded, not-locally-patched finding from issue #24, since the file
+is byte-for-byte imported) is now live now that the guard is enabled —
+see issue #24's PR body for the finding and why it isn't patched here
+either.
 
 ### Optional `idd-doctor` CI Gate
 
-**Status**: `enabled` as a confirmed decision. No `idd-doctor` CI
-workflow exists in this repository until #16 merges; do not treat this
-record as evidence that the gate is currently running.
+**Status**: `enabled`. `.github/workflows/idd-doctor.yml` exists,
+triggers on `pull_request`, and runs `pnpm exec idd-doctor` (exit
+non-zero only when `errors.length > 0`, so this repository's three
+standing warnings do not fail the gate).
 
 ### Optional Claude Code Permission Baseline
 
