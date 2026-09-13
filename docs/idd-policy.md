@@ -227,6 +227,22 @@ merge-execute capability despite this repository's
 `fully_autonomous_merge` policy; a maintainer must deliberately edit
 the file to add that capability, per `docs/permissions.md`.
 
+`docs/permissions.md` is imported byte-for-byte from upstream, and its
+"this repository's own dogfood `.claude/settings.json`" phrasing
+(lines 437, 471, 511) refers to `kurone-kito/idd-skill`'s own root
+`.claude/settings.json` — the file that allows `gh pr merge` and omits
+both `idd-merge-execute` denies — not to this repository. This
+repository adopted the "opt-in `idd-template/.claude/settings.json`
+counterpart" that same section names, which is the variant that denies
+`idd-merge-execute` and omits `gh pr merge` (verified: `diff` between
+`idd-skill`'s two source copies at commit
+`adad8ae43c5a1b6fc3a100ce384c8a84a8d5139d` shows exactly that gh pr
+merge / idd-merge-execute-deny split). So this repository's own
+`mergePolicy: fully_autonomous_merge` recording does not, by itself,
+imply the `gh pr merge` allow that `docs/permissions.md` attributes to
+the dogfood copy — a maintainer opts into that separately, as the
+paragraph above states.
+
 ### Path-Scoped Domain Guidance Reach
 
 **Applicability**: not applicable. This repository relies on no hidden,
