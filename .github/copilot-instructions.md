@@ -16,3 +16,12 @@ Read that file first if you haven't already.
 
 See [docs/ai-strategy.md](../docs/ai-strategy.md) for why this repository's
 AI instructions are laid out this way.
+
+## IDD Workflow
+
+The IDD entry path is defined once in `AGENTS.md`'s IDD Workflow
+section; it points to `docs/idd-workflow.md`,
+`.github/instructions/idd-overview-core.instructions.md`, and
+`docs/idd-policy.md`. Note that `idd-overview-core.instructions.md`
+sets `excludeAgent: "code-review"`, so it targets an implementing
+agent rather than Copilot's review surface.

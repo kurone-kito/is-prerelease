@@ -30,6 +30,20 @@ with the project's standards and practices:
   question when uncertainty or hidden risk makes the next step unsafe. When
   that pause is needed, provide one or more recommended response options.
 
+## IDD Workflow
+
+This project uses Issue-Driven Development (IDD) with parallel AI
+agents. Start with [docs/idd-workflow.md](docs/idd-workflow.md) for the
+cross-agent entry path and phase routing.
+
+Before starting IDD work, open
+`.github/instructions/idd-overview-core.instructions.md`. Open the routed
+phase file manually when the current step changes.
+
+See [docs/idd-policy.md](docs/idd-policy.md) for this repository's
+recorded IDD policy decisions (merge policy, review policy, helper
+runtime profile, and the rest).
+
 ## Branch strategy
 
 This project follows
