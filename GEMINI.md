@@ -9,13 +9,7 @@ directly in this file.
 
 ## IDD Workflow
 
-This project uses Issue-Driven Development (IDD) with parallel AI
-agents. Start with [docs/idd-workflow.md](docs/idd-workflow.md) for the
-cross-agent entry path and phase routing.
-
-Before starting IDD work, open
-`.github/instructions/idd-overview-core.instructions.md`. Open the routed
-phase file manually when the current step changes.
-
-See [docs/idd-policy.md](docs/idd-policy.md) for this repository's
-recorded IDD policy decisions.
+The IDD entry path is defined once in `AGENTS.md`'s IDD Workflow
+section (imported above); it points to `docs/idd-workflow.md`,
+`.github/instructions/idd-overview-core.instructions.md`, and
+`docs/idd-policy.md`.
