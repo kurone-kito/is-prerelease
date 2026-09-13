@@ -1,0 +1,60 @@
+{
+  "$schema": "https://kurone-kito.github.io/idd-skill/schemas/policy.schema.json",
+  "iddVersion": "0.11.0",
+  "markerPrefix": "is-prerelease",
+  "developmentBranch": "main",
+  "mergePolicy": "fully_autonomous_merge",
+  "mergePolicyAck": "fully_autonomous_merge",
+  "reviewPolicy": "copilot-advisory",
+  "threadResolutionPolicy": "fast-agent-resolve",
+  "authoringLanguage": "en",
+  "claimTiming": {
+    "staleAge": "PT24H",
+    "heartbeatInterval": "PT12H"
+  },
+  "trustedMarkerActors": ["kurone-kito"],
+  "advisoryBotLogins": ["coderabbitai[bot]", "chatgpt-codex-connector[bot]"],
+  "workshop": {
+    "exampleRepository": ""
+  },
+  "commands": {
+    "install-deps": "pnpm install",
+    "fix-validate": "pnpm run lint:fix && pnpm run lint",
+    "pre-push-validate": "pnpm run lint && pnpm run build && pnpm run test",
+    "post-fix-validate": "pnpm run lint:fix && pnpm run lint && pnpm run build && pnpm run test"
+  },
+  "helperRuntime": {
+    "profile": "package-manager"
+  },
+  "issueScope": "roadmap-first",
+  "orphanFirstPolicy": "none",
+  "maintainerApprovalActorPolicy": "owners-and-maintainers-only",
+  "advisoryWait": {
+    "convergenceScope": "all-prs"
+  },
+  "ciWait": {
+    "runningTimeout": "PT30M",
+    "generationTimeout": "PT10M",
+    "rerunPolicy": "rerun-once"
+  },
+  "ciGate": {
+    "trustEmptyProtectionReads": true
+  },
+  "labels": {
+    "roadmapLabelName": "roadmap",
+    "blockedByHumanLabelName": "status:blocked-by-human",
+    "needsDecisionLabelName": "status:needs-decision",
+    "untrustedLabelerLogins": [
+      "coderabbitai[bot]",
+      "chatgpt-codex-connector[bot]"
+    ]
+  },
+  "issueAuthoring": {
+    "maxClarificationRounds": 3,
+    "authoringLabelName": "status:authoring",
+    "heartbeatCoalesceWindow": "PT2M"
+  },
+  "autopilotSuitability": {
+    "floor": 3
+  }
+}
