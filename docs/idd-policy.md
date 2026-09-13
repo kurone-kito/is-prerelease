@@ -257,11 +257,29 @@ paragraph above states.
 
 ### Path-Scoped Domain Guidance Reach
 
-**Applicability**: not applicable. This repository relies on no hidden,
-bot-specific domain guidance (for example a `path_instructions` entry
-in one advisory bot's own config file that another gating bot never
-sees) for review quality — there is no non-standard-language directory
-or file extension in this repository that would need such guidance.
+**Applicability**: applicable, with one known gap. There is no
+non-standard-language directory or file extension in this repository
+(the UdonSharp-style idiom concern this question targets does not
+apply here), but `.coderabbit.yaml` does carry a `path_instructions`
+entry scoped to `package.json`: it tells CodeRabbit to warn that a
+pre-release version notation should be removed on a pull request to
+`main`. That rule lives only in CodeRabbit's own config file and does
+not reach `AGENTS.md` or `.github/copilot-instructions.md` — so the
+primary `copilot-advisory` gating reviewer never sees it (confirmed:
+neither file mentions "pre-release notation").
+
+The 2026-09-12/13 hearing recorded this question as "not applicable,"
+but that premise was wrong; this corrects the record rather than
+silently repeating it. The practical risk is low — this is a
+release-process reminder, not a language-idiom constraint an
+executing agent could implement incorrectly, and `AGENTS.md`'s
+Release model section already documents the underlying
+`is:prerelease`/`is:release` distinction — but the primary gating
+reviewer still does not see CodeRabbit's specific reminder. Whether to
+duplicate the rule into `AGENTS.md` so Copilot also applies it, keep
+it CodeRabbit-only, or drop it, is a maintainer decision outside this
+issue's "record, don't wire" scope; recorded here as a gap for #18's
+roadmap-completion audit rather than decided unasked.
 
 ### `upstreamEscalation`
 
