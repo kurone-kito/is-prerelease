@@ -44,6 +44,22 @@ See [docs/idd-policy.md](docs/idd-policy.md) for this repository's
 recorded IDD policy decisions (merge policy, review policy, helper
 runtime profile, and the rest).
 
+### Worktree guard activation
+
+The disposable-worktree guard (`worktreeGuard.enabled: true`) is
+**local and uncommitted per clone**: it only takes effect once
+`core.hooksPath` resolves to `.githooks` (directly, or chained through
+Husky, as here). Since this repository already runs Husky, activation
+is `pnpm install` (which runs `prepare: husky`, repointing
+`core.hooksPath` at `.husky/_`, which in turn chains into
+`.githooks/pre-commit`/`.githooks/pre-push`) — **not** a manual
+`git config core.hooksPath .githooks`, which would bypass Husky instead
+of chaining it. A fresh clone, ephemeral agent environment, or
+coding-agent session that skips its normal `pnpm install` setup step
+starts with the guard unwired despite `worktreeGuard.enabled: true`;
+run `pnpm exec idd-doctor` to confirm — it reports **enabled-but-inert**
+when the chain isn't actually wired.
+
 ## Branch strategy
 
 This project follows
