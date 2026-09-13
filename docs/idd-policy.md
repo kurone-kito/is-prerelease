@@ -124,7 +124,12 @@ remains the better fit.
   `skipIssueAuthorApprovalGate` is absent from
   `.github/idd/config.json`
 - **`maintainer-approval-actors` policy**: `owners-and-maintainers-only`
-- **Approval signals**: distributed defaults
+- **Approval signals**: configured ready label (`approvalSignals.readyLabelName`:
+  `idd:ready`, distributed default; omitted from `.github/idd/config.json`
+  to keep it) or a fresh standalone `IDD ready` comment from a
+  maintainer approval actor
+- **`approvalSignals.labelFreshnessMode`**: `presence-only`
+  (distributed default; omitted to keep it)
 
 ### Issue-Authoring Companion
 
@@ -151,15 +156,20 @@ issue.
 
 ### Bootstrap Execution Mode
 
-**Mode**: `direct-import`, more specifically this repository's existing
-hand-authored roadmap-and-children decomposition (issues #10–#19),
-kept deliberately instead of switching to upstream's newer
-`issue-mediated` single-issue bootstrap mode. That mode targets a
-repository with no local IDD files yet and no existing plan — this
-repository's situation before #10 was first authored — but this update
-round revised the existing plan rather than replacing it, and the
-nine-issue decomposition already gives an equivalent, arguably
-finer-grained, reviewable trail.
+**Mode**: neither distributed value. This repository uses a
+hand-authored roadmap-and-children decomposition (issues #10–#19), kept
+deliberately instead of switching to upstream's newer `issue-mediated`
+single-issue bootstrap mode — that mode targets a repository with no
+local IDD files yet and no existing plan (this repository's situation
+before #10 was first authored), but this update round revised the
+existing plan rather than replacing it. It is also not the distributed
+`direct-import` default: `direct-import` means importing the template
+with a single unreviewed commit, but every step here, including the
+core template import itself (#14), went through the normal
+issue → branch → PR → CI → review → merge loop (#14 merged as PR #24,
+with CI, Copilot, and Codex review). The nine-issue decomposition gives
+an equivalent, arguably finer-grained, reviewable trail to either
+distributed mode.
 
 ### IDD Label Names
 
