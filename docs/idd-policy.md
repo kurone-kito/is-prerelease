@@ -156,7 +156,8 @@ The distributed bundle shrank from five files to four upstream
 
 **Native destination**: `.claude/skills/issue-authoring/` (this
 repository's Claude Code runtime). **Installed by #17**, byte-identical
-to `kurone-kito/idd-skill@adad8ae4` (iddVersion 0.11.0): `SKILL.md`,
+to <https://github.com/kurone-kito/idd-skill/commit/adad8ae43c5a1b6fc3a100ce384c8a84a8d5139d>
+(iddVersion 0.11.0): `SKILL.md`,
 `references/contract.md`, `references/draft-patterns.md`,
 `references/workflow-boundary.md`.
 
@@ -173,8 +174,9 @@ to `kurone-kito/idd-skill@adad8ae4` (iddVersion 0.11.0): `SKILL.md`,
 **Status**: `adopted` and **installed by #17**, at
 `.claude/skills/idd-spec-audit/` (v0.10 addition: a read-only companion
 that audits the installed IDD instruction corpus and agent-entry
-files), byte-identical to `kurone-kito/idd-skill@adad8ae4`: `SKILL.md`,
-`references/report-template.md`.
+files), byte-identical to
+<https://github.com/kurone-kito/idd-skill/commit/adad8ae43c5a1b6fc3a100ce384c8a84a8d5139d>:
+`SKILL.md`, `references/report-template.md`.
 
 Read-only by design: it runs `N` (default 3) independent, parallel,
 read-only LLM passes over the audit scope (`.github/instructions/**`,
