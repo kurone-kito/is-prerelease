@@ -94,12 +94,15 @@ state rather than a pending action.
   2026-07-28) that this repository had "no ruleset" — the two Rulesets
   were added 2026-08-12, after that claim was written, and neither
   defines a required status check.
-- **`idd-advisory-convergence` required check**: workflow file
-  **adopted** (wired by #16, since upstream now ships it as a
-  ready-to-copy file rather than something to hand-write); registering
-  it as an actually-*required* status check inside the `main` Ruleset
-  remains a separate, deferred, maintainer-only GitHub-settings action
-  (see roadmap #10's "Deferred and human-dependent work").
+- **`idd-advisory-convergence` required check**: **adopted** as a
+  decision, since upstream now ships it as a ready-to-copy file rather
+  than something to hand-write. Copying the workflow file in is #16's
+  scope: it does not exist in this repository until #16 merges, and no
+  IDD phase or agent should assume it gates anything before then.
+  Registering it as an actually-*required* status check inside the
+  `main` Ruleset remains a separate, deferred, maintainer-only
+  GitHub-settings action either way (see roadmap #10's "Deferred and
+  human-dependent work").
 
 ### Credential Scope
 
@@ -139,7 +142,10 @@ The distributed bundle shrank from five files to four upstream
 (`agents/openai.yaml` was removed in `v0.6.0`, with no replacement).
 
 **Native destination**: `.claude/skills/issue-authoring/` (this
-repository's Claude Code runtime). Installed by #17, not this issue.
+repository's Claude Code runtime). Installation is #17's scope, not
+landed by this issue — this record confirms the target decision, not
+current presence. Check that `.claude/skills/issue-authoring/SKILL.md`
+actually exists in the working tree before routing to this companion.
 
 - **`issueAuthoring.maxClarificationRounds`**: `3` (distributed default)
 - **`issueAuthoring.heartbeatCoalesceWindow`**: `PT2M` (distributed
@@ -149,10 +155,12 @@ repository's Claude Code runtime). Installed by #17, not this issue.
 
 ### Optional `idd-spec-audit` Companion
 
-**Status**: `adopted`, under `.claude/skills/idd-spec-audit/` (v0.10
-addition: a read-only companion that audits the installed IDD
-instruction corpus and agent-entry files). Installed by #17, not this
-issue.
+**Status**: `adopted` as a confirmed decision, targeting
+`.claude/skills/idd-spec-audit/` (v0.10 addition: a read-only companion
+that audits the installed IDD instruction corpus and agent-entry
+files). Installation is #17's scope, not landed by this issue. Check
+that `.claude/skills/idd-spec-audit/SKILL.md` actually exists in the
+working tree before routing to this companion.
 
 ### Bootstrap Execution Mode
 
@@ -201,18 +209,22 @@ conversational language used during a hearing.
 
 ### Optional Worktree Guard
 
-**Status**: `enabled` (decision), with
+**Status**: `enabled` as a confirmed decision, with
 `worktreeGuard.refuseBaseBranchCommits` left **absent/false** so normal
 maintainer base-branch operations and the fully autonomous merge path
-are not blocked. Wiring the `worktreeGuard.enabled: true` config field
-and making `.githooks/pre-commit`/`.githooks/pre-push` executable in
-git is #16's scope, not this issue's; per-clone activation
-(`git config core.hooksPath .githooks`) is separately deferred,
-maintainer/agent-session work (roadmap #10).
+are not blocked. `worktreeGuard.enabled` is absent from
+`.github/idd/config.json` and `.githooks/pre-commit`/`.githooks/pre-push`
+are not yet mode `100755` in the git index — wiring the config field
+and the executable bits is #16's scope, not landed by this issue; do
+not treat this record as evidence the guard is currently active.
+Per-clone activation (`git config core.hooksPath .githooks`) is
+separately deferred, maintainer/agent-session work (roadmap #10).
 
 ### Optional `idd-doctor` CI Gate
 
-**Status**: `enabled` (decision). Wired by #16, not this issue.
+**Status**: `enabled` as a confirmed decision. No `idd-doctor` CI
+workflow exists in this repository until #16 merges; do not treat this
+record as evidence that the gate is currently running.
 
 ### Optional Claude Code Permission Baseline
 
