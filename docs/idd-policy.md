@@ -340,6 +340,17 @@ repository's agents find an upstream defect in imported content; such
 findings are recorded for #18's roadmap-completion audit instead, and
 a human decides whether/where to escalate them.
 
+## Adopted IDD Version
+
+**iddVersion**: `0.11.0`. **Source commit**:
+<https://github.com/kurone-kito/idd-skill/commit/adad8ae43c5a1b6fc3a100ce384c8a84a8d5139d>.
+**Import date**: 2026-09-13, when pull request 24 merged the core
+template. Pull requests 25 and 26 (issues 15 and 16) also merged that
+same day; pull request 27 (issue 17) merged the following day,
+2026-09-14, and issue 18 audited the import that same day. Recorded so
+a future re-import can enumerate named gaps against a known baseline
+instead of guessing.
+
 ## Machine-readable policy file
 
 `.github/idd/config.json` is the machine-readable record of the same
